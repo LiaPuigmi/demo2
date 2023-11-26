@@ -13,7 +13,7 @@ public class HomeController {
 	 private static final Logger LOGGER= (Logger) LoggerFactory.getLogger(HomeController.class);
 	@RequestMapping(value="/persona", method=RequestMethod.GET)
 	public String getPerson() {
-		Persona persona1=new Persona(1,"Manu", "Martinez",23);
+		Persona persona1=new Persona(1,"Manu", "Martinez","1994-12-03");
 		LOGGER.info(getPerson());
 		return persona1.toString();
 	}

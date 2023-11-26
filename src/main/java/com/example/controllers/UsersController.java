@@ -57,10 +57,10 @@ public class UsersController {
 	
 	
 	@RequestMapping(value="/user/insert", method=RequestMethod.POST)
-	public String postPerson(@RequestBody Persona user) {
+	public String postPerson(@RequestParam(required=true) Integer id,@RequestParam(required=true) String nombre,@RequestParam(required=true) String apellidos,@RequestParam(required=true) String fecha) {
         logger.info("POST /api/users/ called");
 		// La query que ejecutaremos/lanzaremos jdbcTemplate
-        jdbcTemplate.update("INSERT INTO users VALUES ("+user.getId()+",'"+user.getNombre()+"','"+user.getApellidos()+"',"+ user.getEdad()+")");
+        jdbcTemplate.update("INSERT INTO users VALUES ("+id+",'"+nombre+"','"+apellidos+"','"+ fecha+"')");
 		return "Insertado correctamente";
 	}
 
@@ -74,9 +74,9 @@ public class UsersController {
 
 
 	@RequestMapping(value="/user/update/{id}", method=RequestMethod.PUT)
-	public String updateUser(@PathVariable Integer id, @RequestBody Persona user) {
+	public String updateUser(@PathVariable Integer id, @RequestParam(required=true) String name) {
 		logger.info("PUT /api/users/{} called", id);
-        jdbcTemplate.update("UPDATE users SET nombre = "+user.getNombre()+" WHERE id = "+ id);
+        jdbcTemplate.update("UPDATE users SET nombre = '"+name+"' WHERE id = "+ id);
 		return "El nombre de la persona se ha cambiado correctamente";
 	}
 }
