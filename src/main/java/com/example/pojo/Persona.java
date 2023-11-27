@@ -1,4 +1,4 @@
-package com.example.controllers;
+package com.example.pojo;
 
 public class Persona {
 	private Integer id;
